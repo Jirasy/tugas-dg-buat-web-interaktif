@@ -76,8 +76,5 @@ else if(a=='jump'){cur=v;$('#sum').classList.remove('open');sc='#tabs'}
 else if(a=='opt'){const o=M[cur].o.find(x=>x.id==v);if(B[cur]&&B[cur].id==v)delete B[cur];else B[cur]=o}
 else if(a=='reset'){B={};P=-1}
 R();if(sc)go(sc)});
-const cp=()=>{$('#prof').hidden=true;$('.av').setAttribute('aria-expanded','false')};
-document.addEventListener('click',e=>{if(!e.target.closest('.me'))cp()});
-addEventListener('keydown',e=>{if(e.key=='Escape')cp()});
 PC3D.onPick=k=>{cur=k;$('#sum').classList.remove('open');R();go('#tabs')};
 R();
