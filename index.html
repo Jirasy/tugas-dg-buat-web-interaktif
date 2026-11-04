@@ -7,7 +7,118 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<style>
+:root{--bg:#e9efe9;--s:#fbfcfb;--s2:#e1e9e2;--ln:#c9d6cc;--tx:#10201a;--mu:#53655b;--ac:#0f6a4e;--acs:rgba(15,106,78,.1);--on:#fff;--wn:#a35f00;--er:#bb3326;--sh:0 1px 2px rgba(16,32,26,.06),0 12px 32px rgba(16,32,26,.08);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1a17;--s:#13261f;--s2:#1a3228;--ln:#2a4a3d;--tx:#e6f0ea;--mu:#92ac9f;--ac:#e3ad5f;--acs:rgba(227,173,95,.14);--on:#1a1206;--wn:#f0b84a;--er:#ff7b6b;--sh:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.35);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1a17;--s:#13261f;--s2:#1a3228;--ln:#2a4a3d;--tx:#e6f0ea;--mu:#92ac9f;--ac:#e3ad5f;--acs:rgba(227,173,95,.14);--on:#1a1206;--wn:#f0b84a;--er:#ff7b6b;--sh:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.35);color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:16px}
+body{font:15px/1.6 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--tx);-webkit-text-size-adjust:100%}
+h1,h2,h3,.tot b{font-family:'Bricolage Grotesque','Plus Jakarta Sans',system-ui,sans-serif;letter-spacing:-.02em}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:left}
+button:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.w{max-width:1240px;margin:0 auto;padding:0 clamp(14px,4vw,32px)}
+header{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+.logo{display:flex;align-items:center;gap:10px;font:800 18px 'Bricolage Grotesque',sans-serif}
+.lg{width:30px;height:30px;border-radius:8px;background:var(--ac);display:grid;grid:1fr 1fr/1fr 1fr;gap:3px;padding:6px}
+.lg i{background:var(--on);border-radius:2px;opacity:.9}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border:1.5px solid var(--ln);border-radius:999px;background:var(--s);font-weight:600;font-size:13px;transition:border-color .2s}
+.btn:hover{border-color:var(--ac)}
+.btn.p{background:var(--ac);color:var(--on);border-color:var(--ac)}
+.th{width:14px;height:14px;border-radius:50%;border:2px solid currentColor;background:linear-gradient(90deg,currentColor 50%,transparent 50%)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(20px,5vw,56px);align-items:center;padding:clamp(18px,4vw,48px) 0 10px}
+@media(max-width:860px){.hero{grid-template-columns:1fr}}
+h1{font-size:clamp(34px,6.4vw,64px);line-height:1.02;font-weight:800;margin-bottom:16px}
+.hero p{color:var(--mu);max-width:54ch;font-size:clamp(15px,2vw,17px)}
+.hero .btn{margin-top:22px}
+.rc{background:var(--s);border:1px solid var(--ln);border-radius:24px;padding:clamp(14px,3vw,22px);box-shadow:var(--sh)}
+.rc h3{font-size:17px}.rc>p{font-size:13px;margin:2px 0 14px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.tags .btn{margin-top:0;padding:7px 13px}
+.stg{height:clamp(290px,60vw,370px);perspective:1000px;display:grid;place-items:center;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;border-radius:18px;overflow:hidden;background:linear-gradient(var(--ln) 1px,transparent 1px) 0 0/100% 24px,radial-gradient(circle at 50% 45%,var(--s2),transparent 75%)}
+.stg:active{cursor:grabbing}
+#stg canvas{display:block;width:100%;height:100%;touch-action:pan-y}
+@keyframes sp{to{transform:rotate(1turn)}}
+.kc{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mu)}.kc u{width:50px;text-decoration:none;flex:none}.kc b{color:var(--tx);min-width:34px;text-align:right}
+.kl{flex:1;height:6px;border-radius:9px;background:var(--s2);overflow:hidden}
+.kl i{display:block;height:100%;background:var(--ac);border-radius:9px;transition:width .5s}.kl i.er{background:var(--er)}
+.rc .kc{margin-top:14px}
+.sh{display:flex;align-items:center;gap:12px;margin:36px 0 6px}
+.sh b{width:30px;height:30px;flex:none;border-radius:50%;background:var(--ac);color:var(--on);display:grid;place-items:center;font-size:14px}
+.sh h2{font-size:clamp(22px,3.4vw,30px)}
+.sub{color:var(--mu);margin:0 0 16px 42px;max-width:62ch}
+@media(max-width:600px){.sub{margin-left:0}}
+.app{display:block}
+@media(min-width:1000px){.app{display:grid;grid-template-columns:minmax(0,1fr) 370px;gap:28px;align-items:start}.sum{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);max-height:calc(100vh - 32px);overflow:auto;margin-top:36px}}
+.pf{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px}
+.pc,.oc{display:flex;flex-direction:column;gap:8px;padding:16px;background:var(--s);border:1.5px solid var(--ln);border-radius:16px;transition:border-color .2s,box-shadow .2s;position:relative}
+.pc:hover,.oc:hover{border-color:var(--ac)}
+.pc.on,.oc.on{border-color:var(--ac);box-shadow:0 0 0 3px var(--acs)}
+.pc small,.oc small{color:var(--mu);font-size:13px;line-height:1.45}
+.pc strong{font:800 17px 'Bricolage Grotesque',sans-serif}
+.bd{align-self:flex-start;font-size:12px;font-weight:700;color:var(--ac);background:var(--acs);padding:3px 10px;border-radius:999px}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;margin-top:6px;position:relative;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tb{flex:none;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1.5px solid var(--ln);background:var(--s);font-weight:600;font-size:14px;white-space:nowrap}
+.tb.on{background:var(--ac);color:var(--on);border-color:var(--ac)}
+.dt{width:8px;height:8px;border-radius:50%;border:1.5px solid currentColor}.dt.f{background:currentColor}.dt.e{background:var(--er);border-color:var(--er)}
+.info{background:var(--s);border:1px solid var(--ln);border-radius:20px;padding:clamp(16px,3vw,26px);margin:6px 0 14px;box-shadow:var(--sh)}
+.info h3{font-size:clamp(21px,3vw,28px)}
+.lead{margin:8px 0 14px;color:var(--mu);max-width:70ch}
+.tip{border-left:3px solid var(--ac);background:var(--acs);padding:10px 14px;border-radius:0 12px 12px 0;font-size:14px}.tip b{display:block;color:var(--ac);font-size:13px}
+dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:14px}
+dl div{background:var(--s2);border-radius:12px;padding:12px}dt{font-weight:700;font-size:14px}dd{font-size:13px;color:var(--mu);margin-top:2px}
+.og{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.oc strong{padding-right:28px;font-size:15px;line-height:1.3}
+.ft{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:4px}.ft b{font-size:17px}
+.ft em{font-style:normal;font-size:12px;font-weight:700;color:var(--er);background:rgba(200,60,50,.12);padding:3px 8px;border-radius:999px}
+.oc.bad{opacity:.75}.oc .rs{color:var(--er)}
+.hint{font-size:13px;color:var(--mu);margin-top:12px}
+.tk{position:absolute;top:14px;right:14px;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--ln)}
+.on>.tk{background:var(--ac);border-color:var(--ac)}.on>.tk::after{content:"";position:absolute;left:6px;top:2.5px;width:5px;height:9px;border:solid var(--on);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.sum{background:var(--s);border:1px solid var(--ln);border-radius:20px;box-shadow:var(--sh)}
+.bar{display:none}
+.bd2{padding:18px}
+.hd{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.hd h3{font-size:20px}
+.chip{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.chip.ok{color:var(--ac);background:var(--acs)}.chip.wn{color:var(--wn);background:rgba(220,150,20,.15)}.chip.er{color:var(--er);background:rgba(200,60,50,.13)}
+.ls{list-style:none;display:grid;gap:2px}
+.ls button{display:grid;grid-template-columns:70px 1fr auto;gap:8px;width:100%;padding:7px 8px;border-radius:10px;font-size:13px;align-items:baseline}.ls button:hover{background:var(--s2)}
+.ls .l{color:var(--mu);font-weight:600}.ls .n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ls .e{color:var(--mu);font-style:italic}.ls .p{font-weight:600}
+.tot{display:flex;justify-content:space-between;align-items:baseline;margin:14px 0 8px;padding-top:12px;border-top:1px dashed var(--ln)}.tot b{font-size:26px}
+.sum h4{font-size:14px;margin:18px 0 8px}
+.sum .kc{margin-bottom:6px}.sum .kc u{width:92px}
+.nt{font-size:12px;color:var(--mu);margin-top:4px}
+.ck{list-style:none;display:grid;gap:6px;font-size:13px}.ck li{display:flex;gap:8px}.ck i{flex:none;width:8px;height:8px;border-radius:50%;margin-top:7px;background:var(--ac)}.ck .warn i{background:var(--wn)}.ck .err i{background:var(--er)}
+.act{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.cv{width:9px;height:9px;border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(-135deg);transition:transform .3s;margin-top:4px}
+@media(max-width:999px){
+.sum{position:fixed;left:0;right:0;bottom:0;z-index:30;border-radius:22px 22px 0 0;max-height:86vh;display:flex;flex-direction:column;transform:translateY(calc(100% - 72px - env(safe-area-inset-bottom,0px)));transition:transform .3s ease}
+.sum.open{transform:none}.sum.open .cv{transform:rotate(45deg)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;height:calc(72px + env(safe-area-inset-bottom,0px));padding:0 18px env(safe-area-inset-bottom,0px);flex:none;border-bottom:1px solid var(--ln)}
+.bar span{display:block;font-size:12px;color:var(--mu)}.bar b{font:800 21px 'Bricolage Grotesque',sans-serif}
+.bar div:last-child{display:flex;align-items:center;gap:10px}
+.bd2{overflow:auto;padding-bottom:calc(18px + env(safe-area-inset-bottom,0px))}
+main{padding-bottom:100px}
+}
+footer{font-size:12px;color:var(--mu);padding:30px 0;max-width:70ch}
+.ts{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:13px;opacity:0;pointer-events:none;transition:.3s;z-index:40}.ts.show{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+.hr{display:flex;align-items:center;gap:10px}
+.me{position:relative}
+.av,.ph{position:relative;overflow:hidden;border-radius:50%;border:2px solid var(--ac);background:var(--acs);display:grid;place-items:center;color:var(--ac);font:800 14px 'Bricolage Grotesque',sans-serif;padding:0}
+.av{width:42px;height:42px}
+.ph{width:78px;height:78px;border-width:3px;font-size:24px}
+.av img,.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mt{position:absolute;right:0;top:calc(100% + 8px);background:var(--tx);color:var(--bg);padding:8px 12px;border-radius:10px;font-size:13px;font-weight:700;white-space:nowrap;opacity:0;transform:translateY(-4px);transition:opacity .2s,transform .2s;pointer-events:none;z-index:40}
+.mt small{display:block;font-weight:500;opacity:.75;font-size:12px}
+.me:hover .mt,.av:focus-visible+.mt{opacity:1;transform:none}
+.av[aria-expanded=true]+.mt{opacity:0}
+.mc{position:absolute;right:0;top:calc(100% + 10px);width:min(300px,calc(100vw - 28px));background:var(--s);border:1px solid var(--ln);border-radius:20px;box-shadow:var(--sh);padding:18px;z-index:50;display:grid;gap:12px}
+.mc[hidden]{display:none}
+.mc h3{font-size:20px}.mc p{font-size:13px;color:var(--mu)}
+.rw{display:flex;justify-content:space-between;gap:14px;font-size:13px;border-top:1px dashed var(--ln);padding-top:10px}
+.rw span:first-child{color:var(--mu);flex:none}.rw span:last-child{text-align:right;font-weight:600}
+</style>
 </head>
 <body>
 <div class="w">
@@ -43,7 +154,186 @@
 </div>
 <div class="ts" id="ts"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="pc3d.js"></script>
-<script src="script.js"></script>
+<script>
+/* PC 3D (Three.js r128). Satuan scene = cm. Sisi kaca casing menghadap +z. */
+(function(){
+const el=document.getElementById('stg'),NO={sync(){},explode(){},reset(){},onPick(){}};
+let R;try{R=new THREE.WebGLRenderer({antialias:true,alpha:true})}catch(e){}
+if(!R){el.innerHTML='<p style="padding:20px;font-size:13px">Tampilan 3D tidak tersedia di perangkat atau koneksi ini.</p>';window.PC3D=NO;return}
+const T=THREE,V=(x,y,z)=>new T.Vector3(x,y,z),ZB=-9.3,K=['cs','mb','cpu','cool','ram','gpu','sto','psu'],cl=(v,a,b)=>Math.max(a,Math.min(b,v));
+R.setPixelRatio(Math.min(devicePixelRatio||1,2));R.outputEncoding=T.sRGBEncoding;el.appendChild(R.domElement);
+const S=new T.Scene(),Cam=new T.PerspectiveCamera(32,1,1,600);
+S.add(new T.HemisphereLight(0xffffff,0x44505a,.9));
+const dl=new T.DirectionalLight(0xffffff,.9);dl.position.set(30,60,50);S.add(dl);
+[[0x4fd1c5,-25,-12],[0xffa94d,25,18]].forEach(([c,x,y])=>{const l=new T.PointLight(c,.7,90);l.position.set(x,y,14);S.add(l)});
+const MT=(c,m,r,e,ei)=>new T.MeshStandardMaterial({color:c,metalness:m==null?.3:m,roughness:r==null?.5:r,emissive:e||0,emissiveIntensity:ei||1});
+const bx=(g,w,h,d,m,x,y,z)=>{const o=new T.Mesh(new T.BoxGeometry(w,h,d),m);o.position.set(x||0,y||0,z||0);g.add(o);return o};
+const cyl=(g,r,h,m,x,y,z,rx)=>{const o=new T.Mesh(new T.CylinderGeometry(r,r,h,24),m);o.position.set(x,y,z);o.rotation.x=rx||0;g.add(o);return o};
+const tube=(g,pts,r,m)=>g.add(new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3(pts.map(p=>V(...p))),28,r,8),m||MT(0x0f1114,.1,.8)));
+const GH=new T.MeshBasicMaterial({color:0x7f9a8e,transparent:true,opacity:.13,depthWrite:false}),GA=new T.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.3,depthWrite:false});
+function fan(g,s,col,x,y,z,ry,rx){const q=new T.Group(),r=new T.Group(),f=MT(0x14171b,.2,.6),b=MT(0x2a3038,.2,.5);q.userData.rot=r;q.add(r);
+[[s,.5,0,s/2-.25],[s,.5,0,.25-s/2],[.5,s,s/2-.25,0],[.5,s,.25-s/2,0]].forEach(([w,h,a,c])=>bx(q,w,h,2,f,a,c,0));
+cyl(r,s*.17,1.2,b,0,0,0,Math.PI/2);
+for(let i=0;i<9;i++){const p=new T.Group();p.rotation.z=i*.698;bx(p,s*.3,s*.16,.1,b,s*.27,0,0).rotation.x=.6;r.add(p)}
+q.add(new T.Mesh(new T.TorusGeometry(s*.45,.1,6,36),MT(0,0,.5,col,2.4)));q.position.set(x,y,z);q.rotation.set(rx||0,ry||0,0);g.add(q)}
+function pcb(){const c=document.createElement('canvas');c.width=c.height=256;const x=c.getContext('2d');x.fillStyle='#14181d';x.fillRect(0,0,256,256);x.strokeStyle='#26303a';x.lineWidth=2;
+for(let i=0;i<46;i++){x.beginPath();let a=Math.random()*256,b=Math.random()*256;x.moveTo(a,b);for(let k=0;k<4;k++){if(k%2)b+=(Math.random()-.5)*90;else a+=(Math.random()-.5)*90;x.lineTo(a,b)}x.stroke()}
+x.fillStyle='#3a4856';for(let i=0;i<60;i++)x.fillRect(Math.random()*256,Math.random()*256,3,3);const t=new T.CanvasTexture(c);t.wrapS=t.wrapT=T.RepeatWrapping;t.repeat.set(3,3);return t}
+const BD={
+cs(it,ix){const g=new T.Group(),m=MT([0xcfd3d8,0x1b1f24,0x262b32,0x14171b][ix],.5,.45);
+bx(g,44,.7,21,m,0,-23.3,0);bx(g,44,.7,21,m,0,23.3,0);bx(g,44,46.6,.6,MT(0x101317,.4,.6),0,0,-10.5);bx(g,.8,46.6,21,m,21.9,0,0);bx(g,.8,46.6,21,m,-21.9,0,0);
+[[-21.5,-10],[21.5,-10],[-21.5,10],[21.5,10]].forEach(([x,z])=>bx(g,.9,46.6,.9,m,x,0,z));
+bx(g,.3,40,.3,MT(0,0,.5,ix>1?0x6ad1ff:0xffffff,ix>1?2:.3),22.4,0,9.4);
+bx(g,44,46.6,.3,new T.MeshStandardMaterial({color:0x9db4c2,metalness:.1,roughness:.05,transparent:true,opacity:.1,depthWrite:false}),0,0,10.7).renderOrder=3;return g},
+mb(it,ix){const g=new T.Group(),W=it.ff==1?18:24.4,H=it.ff==1?18:it.ff==2?24.4:30.5,pm=MT(0x1a1e24,.1,.7),tm=MT(0xffffff,.1,.7),hs=MT(0x3a424b,.6,.4),sl=MT(0x0f1114,.2,.6);tm.map=pcb();
+const o=new T.Mesh(new T.BoxGeometry(W,H,.3),[pm,pm,pm,pm,tm,pm]);o.position.set(-20.5+W/2,21-H/2,ZB-.15);g.add(o);
+bx(g,1.8,12,1.6,hs,-19.3,11,ZB+.8);bx(g,10,1.8,1.6,hs,-12.5,19.5,ZB+.8);bx(g,7.5,7.5,.5,MT(0xbfc5cb,.8,.35),-12.5,11,ZB+.25);
+for(let i=0;i<4;i++)bx(g,.7,13.3,1.1,sl,-6+i*.9,11,ZB+.55);
+bx(g,8.9,.9,1.1,sl,-14.7,it.ff==1?3.4:-2,ZB+.55);
+if(it.ff==3)bx(g,4.5,4.5,.9,hs,-4,-7,ZB+.45);
+if(it.ff>1)bx(g,1.2,5,1.2,sl,-20.5+W-1.2,3,ZB+.6);return g},
+cpu(){const g=new T.Group();bx(g,4.2,4.2,.35,MT(0xc2c8ce,.85,.3),-12.5,11,ZB+.68);bx(g,2.6,2.6,.05,MT(0x8c939a,.9,.25),-12.5,11,ZB+.88);return g},
+cool(it,ix){const g=new T.Group(),al=MT(0xb9c0c7,.8,.35),cu=MT(0xb87333,.9,.3),cx=-12.5,cy=11,zc=ZB+8.15,cap=MT(0x2a2f36,.5,.4);
+const st=x=>{for(let i=0;i<22;i++)bx(g,4.4,.12,14.5,al,x,cy-5.2+i*.5,zc);bx(g,4.6,11,.4,cap,x,cy,zc+7.3)};
+if(ix<2){bx(g,5,5,1.2,cu,cx,cy,ZB+1.3);
+ if(!ix){st(cx);fan(g,12,0x9be7ff,cx+3.5,cy,zc-.5,Math.PI/2)}else{st(cx-2.9);st(cx+3.9);fan(g,12,0x9be7ff,cx+.4,cy,zc-.5,Math.PI/2)}}
+else{const len=ix==2?27.5:39.5,n=ix==2?2:3,rb=MT(0x0f1114,.1,.8);
+ cyl(g,3.1,3.6,MT(0x20252b,.6,.4),cx,cy,ZB+2.5,Math.PI/2);cyl(g,2.3,.15,MT(0,0,.5,0x6ad1ff,2),cx,cy,ZB+4.4,Math.PI/2);
+ bx(g,2.7,len,12,MT(0x23282e,.6,.5),18.5,0,-3.5);
+ for(let i=0;i<n;i++)fan(g,12,0x9be7ff,15.7,(i-(n-1)/2)*12.1,-3.5,Math.PI/2);
+ [1,-1].forEach(s=>tube(g,[[cx,cy+s*1.5,ZB+3.5],[cx+6,cy*.6+s*6,ZB+7],[12,s*len/2,-1],[18.5,s*(len/2-.6),-3.5]],.45,rb))}
+return g},
+ram(it,ix){const g=new T.Group(),sp=MT([0x2a2d34,0xc9ccd1,0x2a2d34,0xe8eaee,0x16181c][ix],.6,.4),rgb=[0x00d4ff,0xff3b6b,0x7cff6b,0xff9d2e,0xffffff][ix];
+[1,3].forEach(i=>{const x=-6+i*.9;bx(g,.8,13.3,3.2,sp,x,11,ZB+2.2);bx(g,.5,11.6,.2,MT(0,0,.5,rgb,2.2),x,11,ZB+3.9)});return g},
+gpu(it,ix){const g=new T.Group(),L=[24,27,30,33][ix],Tk=[3.8,4.5,5.2,6.2][ix],D=12.5,x0=-19.2,zc=ZB+1.4+D/2,n=ix>1?3:2;
+bx(g,L,Tk,D,MT(0x1c2026,.4,.5),x0+L/2,0,zc);bx(g,L-1,.15,D-1,MT(0x8b939b,.8,.35),x0+L/2,Tk/2+.05,zc);
+bx(g,L*.55,.12,.5,MT(0,0,.5,[0x76ff7a,0xff4d4d,0x6ad1ff,0xe6c35c][ix],2),x0+L/2,Tk/2+.15,zc+D/2-.4);
+for(let i=0;i<n;i++)fan(g,9,0x6ad1ff,x0+L*(i+.5)/n,-Tk/2-.1,zc,0,Math.PI/2);
+bx(g,.3,Tk+.6,D,MT(0xc0c6cc,.8,.4),x0-.1,0,zc);return g},
+sto(it,ix){const g=new T.Group();
+if(!ix){bx(g,10,7,.8,MT(0x2f3a45,.5,.5),10,-15,-8.5);bx(g,6,2,.05,MT(0xe0e4e8,.1,.8),10,-15,-8.05)}
+else{const y=3.3,x=-12.5,z=ZB+.7,hm=MT(0x3f4750,.7,.4);bx(g,8,2.2,.15,MT(0x1b3a30,.2,.6),x,y,z);bx(g,1.5,1.5,.25,MT(0x111111,.2,.6),x-1,y,z+.2);bx(g,1.5,1.5,.25,MT(0x111111,.2,.6),x+1.5,y,z+.2);
+ bx(g,3,1.9,.05,MT(0xd9803a,.1,.7),x-2.8,y,z+.12);
+ if(ix>1)bx(g,8,2.4,ix==3?1.4:.5,hm,x,y,z+(ix==3?1:.4));
+ if(ix==3)for(let i=0;i<7;i++)bx(g,.2,2.4,.8,hm,x-3.2+i*1.07,y,z+1.9)}
+return g},
+psu(it,ix){const g=new T.Group(),x=-13.4,y=-18.4,z=-2.9;bx(g,16,8.6,14,MT(0x25292f,.5,.5),x,y,z);
+fan(g,10.5,[0x777777,0xd6b35b,0xd6b35b,0xd6b35b][ix],x,y,z+7.1,0,0);
+tube(g,[[-8,-14.5,4],[-2,-12,6],[3,-6,-3],[3,2.5,ZB+1]],.6);tube(g,[[-17,-14,4],[-20.2,0,3],[-20.2,15,-3],[-14,19.7,ZB+1]],.35);return g}
+};
+const EX={mb:[0,0,-6],cpu:[0,0,8],cool:[0,0,16],ram:[0,0,10],gpu:[0,-3,18],sto:[0,0,6],psu:[0,0,12],cs:[0,0,0]},P3={},tmp=V(0,0,0);
+let hl=null,ex=false,run=true,yaw=.5,pitch=.22,dist=105,td=105,hit=0,t0=performance.now();const pts=new Map();
+function sync(B,cur,Mx){const ac=(getComputedStyle(document.documentElement).getPropertyValue('--ac')||'#0f6a4e').trim(),ff=B.mb?B.mb.ff:3;
+K.forEach(k=>{const it=B[k],rp=it||Mx[k].o[k=='cs'?2:1],key=it?it.id:'g',ix=Mx[k].o.indexOf(rp),p=P3[k]||(P3[k]={});
+ if(p.key!=key){if(p.g)S.remove(p.g);p.g=BD[k](rp,ix);p.key=key;p.fans=[];S.add(p.g);p.g.traverse(o=>{if(o.isMesh)o.userData.m=o.material;if(o.userData.rot)p.fans.push(o.userData.rot)});if(!p.pos)p.pos=p.g.position.clone()}
+ p.on=!!it;p.base=V(0,k=='gpu'?(ff==1?3.4:-2):0,k=='sto'&&ix>0&&ff==1?-2.2:0);
+ p.g.traverse(o=>{if(o.isMesh)o.material=p.on?o.userData.m:(k==cur?GA:GH)});p.g.visible=k!='cs'||!ex});
+if(!hl){hl=new T.BoxHelper(P3[cur].g,0xffffff);S.add(hl)}else hl.setFromObject(P3[cur].g);hl.material.color.set(ac)}
+function pick(e){if(!el.contains(e.target))return;const r=el.getBoundingClientRect(),ray=new T.Raycaster();ray.setFromCamera({x:(e.clientX-r.left)/r.width*2-1,y:-((e.clientY-r.top)/r.height)*2+1},Cam);
+const h=ray.intersectObjects(K.filter(k=>k!='cs'&&P3[k]).map(k=>P3[k].g),true)[0];if(!h)return;let o=h.object;while(o&&!K.some(k=>P3[k]&&P3[k].g===o))o=o.parent;
+const k=K.find(k=>P3[k]&&P3[k].g===o);if(k)PC3D.onPick(k)}
+el.addEventListener('pointerdown',e=>{pts.set(e.pointerId,[e.clientX,e.clientY]);hit=0});
+addEventListener('pointermove',e=>{const p=pts.get(e.pointerId);if(!p)return;const dx=e.clientX-p[0],dy=e.clientY-p[1];
+ if(pts.size==2){const o=[...pts.entries()].find(([i])=>i!=e.pointerId)[1];td=cl(td*Math.hypot(p[0]-o[0],p[1]-o[1])/Math.hypot(e.clientX-o[0],e.clientY-o[1]),55,180)}
+ else{yaw-=dx*.008;if(e.pointerType=='mouse')pitch=cl(pitch+dy*.006,-.5,1.2)}
+ hit+=Math.abs(dx)+Math.abs(dy);pts.set(e.pointerId,[e.clientX,e.clientY])});
+['pointerup','pointercancel'].forEach(n=>addEventListener(n,e=>{if(!pts.has(e.pointerId))return;pts.delete(e.pointerId);if(n=='pointerup'&&hit<6&&!pts.size)pick(e)}));
+el.addEventListener('wheel',e=>{e.preventDefault();td=cl(td*(1+e.deltaY*.001),55,180)},{passive:false});
+new ResizeObserver(()=>{const w=el.clientWidth,h=el.clientHeight;if(!w||!h)return;R.setSize(w,h,false);Cam.aspect=w/h;Cam.updateProjectionMatrix();td=dist=105*Math.max(1,1.25/(w/h))}).observe(el);
+new IntersectionObserver(([e])=>run=e.isIntersecting).observe(el);
+function tick(){requestAnimationFrame(tick);if(!run||document.hidden)return;const dt=Math.min(.05,(performance.now()-t0)/1000);t0=performance.now();
+dist+=(td-dist)*.15;Cam.position.set(dist*Math.cos(pitch)*Math.sin(yaw),dist*Math.sin(pitch),dist*Math.cos(pitch)*Math.cos(yaw));Cam.lookAt(0,0,0);
+K.forEach(k=>{const p=P3[k];if(!p||!p.g)return;const e=ex?EX[k]:EX.cs;p.g.position.lerp(tmp.set(p.base.x+e[0],p.base.y+e[1],p.base.z+e[2]),.12);if(p.on)p.fans.forEach(f=>f.rotation.z-=dt*9)});
+if(hl)hl.update();R.render(S,Cam)}
+tick();
+window.PC3D={sync,onPick(){},explode(v){ex=v;if(P3.cs&&P3.cs.g)P3.cs.g.visible=!ex},reset(){yaw=.5;pitch=.22;td=105}};
+})();
+</script>
+<script>
+const C=[
+{k:'cpu',n:'CPU (prosesor)',s:'CPU',d:'CPU adalah “otak” komputer. Ia menjalankan program, menghitung, dan mengatur lalu lintas data antar komponen lain.',t:'Untuk gaming, pilih kecepatan per core yang tinggi. Untuk edit video dan rendering, pilih jumlah core yang banyak. Socket harus sama dengan motherboard.',g:[['Core dan thread','Jumlah “pekerja” yang bisa mengerjakan tugas bersamaan.'],['Socket','Bentuk dudukan CPU. Harus sama dengan motherboard.'],['TDP','Perkiraan daya dan panas CPU, dalam watt.']],
+o:[['AMD Ryzen 5 5600','AM4, 6 core / 12 thread, 65 W',1650,{sk:'AM4',w:65,ig:0,r:4}],['Intel Core i5-12400F','LGA1700, 6 core / 12 thread, 65 W',2100,{sk:'LGA1700',w:65,ig:0,r:5}],['AMD Ryzen 5 7600','AM5, 6 core / 12 thread, 65 W, grafis bawaan',3300,{sk:'AM5',w:65,ig:1,r:6}],['AMD Ryzen 7 9700X','AM5, 8 core / 16 thread, 65 W, grafis bawaan',5600,{sk:'AM5',w:65,ig:1,r:8}],['AMD Ryzen 9 9950X','AM5, 16 core / 32 thread, 170 W, grafis bawaan',11500,{sk:'AM5',w:170,ig:1,r:10}]]},
+{k:'mb',n:'Motherboard',s:'Motherboard',d:'Motherboard adalah papan utama yang menghubungkan semua komponen: CPU, RAM, GPU, SSD, dan power supply.',t:'Cocokkan socket CPU dan jenis RAM (DDR4 atau DDR5). Ukuran papan menentukan jumlah slot dan casing yang bisa dipakai.',g:[['Chipset','Penentu fitur papan seperti jumlah port dan dukungan overclock.'],['Form factor','Ukuran fisik papan: Mini-ITX lebih kecil dari mATX, lalu ATX.'],['PCIe','Jalur data untuk GPU dan SSD NVMe. Versi baru lebih cepat.']],
+o:[['ASUS Prime A520M-K','AM4, mATX, DDR4',900,{sk:'AM4',rt:'DDR4',ff:2,r:3}],['MSI Pro B660M-A','LGA1700, mATX, DDR4',1800,{sk:'LGA1700',rt:'DDR4',ff:2,r:4}],['Gigabyte B650M Gaming','AM5, mATX, DDR5',2100,{sk:'AM5',rt:'DDR5',ff:2,r:6}],['ASUS TUF Gaming B650','AM5, ATX, DDR5, Wi-Fi',3600,{sk:'AM5',rt:'DDR5',ff:3,r:7}],['ASRock B650I Lightning','AM5, Mini-ITX, DDR5, Wi-Fi',3800,{sk:'AM5',rt:'DDR5',ff:1,r:7}],['MSI MAG X870 Tomahawk','AM5, ATX, DDR5, PCIe 5.0',5200,{sk:'AM5',rt:'DDR5',ff:3,r:9}]]},
+{k:'ram',n:'RAM (memori)',s:'RAM',d:'RAM adalah memori kerja sementara. Semua program dan file yang sedang dibuka disimpan di sini agar cepat dijangkau CPU.',t:'16 GB cukup untuk kantor dan gaming ringan, 32 GB ideal untuk gaming modern dan editing, 64 GB untuk rendering berat. Pakai dua keping agar dual channel aktif.',g:[['DDR4 dan DDR5','Generasi RAM. Tidak bisa dipertukarkan antar motherboard.'],['MHz','Kecepatan transfer data. Makin tinggi makin cepat.'],['Dual channel','Dua keping bekerja paralel untuk bandwidth ganda.']],
+o:[['Kingston Fury 16 GB (2x8)','DDR4-3200, 16 GB',650,{rt:'DDR4',r:3}],['Corsair Vengeance 32 GB (2x16)','DDR4-3600, 32 GB',1150,{rt:'DDR4',r:5}],['Kingston Fury Beast 16 GB (2x8)','DDR5-5600, 16 GB',1250,{rt:'DDR5',r:5}],['G.Skill Ripjaws 32 GB (2x16)','DDR5-6000 CL30, 32 GB',2300,{rt:'DDR5',r:7}],['Corsair Vengeance 64 GB (2x32)','DDR5-6000, 64 GB',4600,{rt:'DDR5',r:9}]]},
+{k:'gpu',n:'GPU (kartu grafis)',s:'GPU',d:'GPU memproses gambar, video, dan efek 3D. Ia penentu utama kelancaran gim dan render visual. Pada PC kantor, grafis bawaan CPU sering sudah cukup.',t:'Tentukan resolusi monitor lebih dulu: 1080p cukup GPU menengah, 1440p dan 4K butuh kelas atas. Cek panjang kartu terhadap casing dan kebutuhan daya PSU.',g:[['VRAM','Memori khusus GPU. Penting untuk tekstur resolusi tinggi.'],['Ray tracing','Teknik pencahayaan realistis yang menuntut GPU kuat.'],['Panjang kartu','Harus muat di dalam casing.']],
+o:[['NVIDIA GeForce RTX 3050 6 GB','6 GB GDDR6, 70 W, panjang 240 mm',2500,{w:70,l:240,r:3}],['AMD Radeon RX 9060 XT 16 GB','16 GB GDDR6, 160 W, panjang 270 mm',6200,{w:160,l:270,r:6}],['NVIDIA GeForce RTX 5070 12 GB','12 GB GDDR7, 250 W, panjang 300 mm',9800,{w:250,l:300,r:8}],['NVIDIA GeForce RTX 5080 16 GB','16 GB GDDR7, 360 W, panjang 330 mm',21000,{w:360,l:330,r:10}]]},
+{k:'sto',n:'Storage (penyimpanan)',s:'Storage',d:'Storage menyimpan sistem operasi, aplikasi, dan file Anda secara permanen, bahkan saat komputer mati.',t:'Pakai SSD NVMe untuk sistem dan gim agar booting dan loading cepat. 1 TB adalah titik awal yang nyaman.',g:[['SATA dan NVMe','NVMe dipasang langsung ke motherboard dan jauh lebih cepat dari SATA.'],['Gen4 dan Gen5','Generasi antarmuka PCIe. Angka lebih tinggi lebih cepat.'],['TBW','Batas total data yang boleh ditulis sebelum SSD aus.']],
+o:[['SSD SATA 480 GB','SATA III, sekitar 550 MB/s',450,{r:3}],['SSD NVMe Gen4 1 TB','PCIe 4.0, sekitar 5.000 MB/s',1100,{r:6}],['SSD NVMe Gen4 2 TB','PCIe 4.0, sekitar 7.000 MB/s',2200,{r:8}],['SSD NVMe Gen5 2 TB','PCIe 5.0, sekitar 12.000 MB/s',3900,{r:10}]]},
+{k:'cool',n:'Pendingin CPU',s:'Pendingin',d:'Pendingin membuang panas dari prosesor agar suhunya stabil dan performanya tidak turun.',t:'Air cooler murah, awet, dan mudah dipasang. AIO lebih senyap untuk CPU bertenaga besar, tetapi butuh casing yang mendukung radiator.',g:[['AIO','Pendingin cair siap pakai: pompa, pipa, dan radiator jadi satu.'],['Thermal paste','Pasta penghantar panas antara CPU dan pendingin.'],['Throttling','CPU menurunkan kecepatan sendiri saat terlalu panas.']],
+o:[['Air cooler tower tunggal','Heatsink udara, sanggup sampai 150 W',350,{rd:0,cap:150,r:4}],['Air cooler dual tower','Heatsink udara, sanggup sampai 220 W',850,{rd:0,cap:220,r:6}],['Liquid cooler AIO 240 mm','Radiator 240 mm, sanggup sampai 250 W',1600,{rd:240,cap:250,r:8}],['Liquid cooler AIO 360 mm','Radiator 360 mm, sanggup sampai 320 W',2500,{rd:360,cap:320,r:9}]]},
+{k:'psu',n:'PSU (power supply)',s:'PSU',d:'PSU mengubah listrik rumah menjadi daya stabil untuk seluruh komponen.',t:'Pilih daya sesuai estimasi kebutuhan ditambah cadangan sekitar 30%. Jangan berhemat di PSU, kualitas buruk bisa merusak komponen lain.',g:[['80 Plus','Sertifikasi efisiensi. Gold lebih hemat listrik dan lebih dingin.'],['Modular','Kabel bisa dilepas sehingga rakitan lebih rapi.'],['Watt','Total daya maksimum yang bisa dialirkan.']],
+o:[['Corsair CV450','450 W, 80 Plus Bronze',550,{w:450,r:3}],['Seasonic Focus 650','650 W, 80 Plus Gold',1250,{w:650,r:6}],['Corsair RM850e','850 W, 80 Plus Gold, ATX 3.1',1950,{w:850,r:8}],['Corsair RM1000x','1000 W, 80 Plus Gold, ATX 3.1',2700,{w:1000,r:9}]]},
+{k:'cs',n:'Casing',s:'Casing',d:'Casing adalah rumah bagi semua komponen. Ia melindungi, mengalirkan udara, dan menentukan tampilan PC.',t:'Pastikan casing mendukung ukuran motherboard, panjang GPU, dan radiator. Panel mesh biasanya punya sirkulasi udara lebih baik.',g:[['Airflow','Aliran udara masuk dan keluar untuk menjaga suhu.'],['Mid tower','Ukuran umum yang muat motherboard ATX.'],['Cable management','Ruang untuk merapikan kabel di balik panel.']],
+o:[['Casing Mini-ITX compact','Mini-ITX, GPU maks 290 mm, radiator 120 mm',1500,{ff:1,l:290,rd:120,r:6}],['Casing Micro-ATX airflow','mATX, GPU maks 320 mm, radiator 240 mm',700,{ff:2,l:320,rd:240,r:5}],['Casing ATX mesh mid tower','ATX, GPU maks 380 mm, radiator 360 mm',1100,{ff:3,l:380,rd:360,r:7}],['Casing ATX full tower kaca','ATX, GPU maks 420 mm, radiator 420 mm',2300,{ff:3,l:420,rd:420,r:9}]]}
+];
+C.forEach(c=>c.o=c.o.map(([n,sp,p,a],i)=>({id:c.k+i,k:c.k,n,sp,p,...a})));
+const M=Object.fromEntries(C.map(c=>[c.k,c]));
+const PF=[
+{n:'Kantor dan belajar',d:'Dokumen, rapat online, browsing, dan streaming dengan listrik hemat.',b:'Rp 8–10 jt',mx:10000,set:{cpu:2,mb:2,ram:2,sto:1,cool:0,psu:0,cs:1}},
+{n:'Gaming',d:'Gim modern di 1080p hingga 1440p dengan frame rate tinggi.',b:'Rp 15–20 jt',mx:20000,set:{cpu:2,mb:2,ram:3,gpu:1,sto:1,cool:0,psu:1,cs:2}},
+{n:'Kreator konten',d:'Edit video, desain, dan streaming sekaligus tanpa tersendat.',b:'Rp 28–35 jt',mx:35000,set:{cpu:3,mb:3,ram:4,gpu:2,sto:2,cool:2,psu:2,cs:2}},
+{n:'PC mini compact',d:'Ukuran ringkas untuk meja kecil, tetap bertenaga untuk gim dan kerja.',b:'Rp 18–22 jt',mx:22000,set:{cpu:2,mb:4,ram:3,gpu:1,sto:2,cool:0,psu:1,cs:0}},
+{n:'Workstation ekstrem',d:'Rendering 3D, simulasi, dan multitasking berat tanpa kompromi.',b:'Rp 50–60 jt',mx:60000,set:{cpu:4,mb:5,ram:4,gpu:3,sto:3,cool:3,psu:3,cs:3}},
+{n:'Mulai dari nol',d:'Pilih setiap komponen sendiri sambil belajar fungsi dan kecocokannya.',b:'Bebas',mx:30000,set:{}}
+];
+const $=s=>document.querySelector(s);
+let B={},P=-1,cur='cpu';
+const idr=n=>'Rp '+(n*1000).toLocaleString('id-ID');
+const mk=s=>Object.fromEntries(Object.entries(s).map(([k,i])=>[k,M[k].o[i]]));
+const W={cpu:[.3,.4,.3],gpu:[.45,.1,.3],ram:[.15,.3,.25],sto:[.1,.2,.15]};
+const perf=b=>[0,1,2].map(i=>{let t=0;for(const k in W)t+=W[k][i]*(b[k]?b[k].r:(k=='gpu'&&b.cpu&&b.cpu.ig?1:0));return Math.round(t*10)});
+const need=b=>Math.ceil(((b.cpu?b.cpu.w:0)+(b.gpu?b.gpu.w:0)+80)*1.3/50)*50;
+const total=b=>Object.values(b).reduce((s,o)=>s+o.p,0);
+function chk(b){const R=[],t=(c,y,n,k,l)=>R.push({s:c?'ok':(l||'err'),t:c?y:n,c:k}),{cpu,mb,ram,gpu,psu,cs,cool}=b;
+if(cpu&&mb)t(cpu.sk==mb.sk,'Socket CPU dan motherboard cocok ('+cpu.sk+')','Socket CPU ('+cpu.sk+') tidak cocok dengan motherboard ('+mb.sk+')',['cpu','mb']);
+if(ram&&mb)t(ram.rt==mb.rt,'Jenis RAM cocok ('+ram.rt+')','RAM '+ram.rt+' tidak cocok dengan slot motherboard ('+mb.rt+')',['ram','mb']);
+if(mb&&cs)t(mb.ff<=cs.ff,'Motherboard muat di casing','Motherboard terlalu besar untuk casing ini',['mb','cs']);
+if(gpu&&cs)t(gpu.l<=cs.l,'GPU muat di casing','GPU ('+gpu.l+' mm) melebihi batas casing ('+cs.l+' mm)',['gpu','cs']);
+if(cool&&cs&&cool.rd)t(cool.rd<=cs.rd,'Radiator muat di casing','Casing tidak mendukung radiator '+cool.rd+' mm',['cool','cs']);
+if(cool&&cpu)t(cool.cap>=cpu.w,'Pendingin cukup untuk CPU','Pendingin kurang kuat untuk CPU '+cpu.w+' W',['cool','cpu'],'warn');
+if(cpu&&!gpu)t(cpu.ig,'CPU memakai grafis bawaan','CPU ini tanpa grafis bawaan, butuh GPU agar ada tampilan',['gpu','cpu'],'warn');
+if(psu&&(cpu||gpu)){const n=need(b);t(psu.w>=n,'Daya PSU mencukupi','PSU '+psu.w+' W kurang dari saran '+n+' W',['psu','cpu','gpu'])}
+return R}
+const kc=(l,v,x)=>`<div class="kc"><u>${l}</u><span class="kl"><i class="${x||''}" style="width:${Math.min(100,v)}%"></i></span>${x==null?'':''}</div>`;
+function rPf(){$('#pf').innerHTML=PF.map((p,i)=>{const f=Object.keys(p.set).length,v=perf(mk(p.set));return`<button class="pc${i==P?' on':''}" data-a="pf" data-v="${i}" aria-pressed="${i==P}"><span class="tk"></span><strong>${p.n}</strong><small>${p.d}</small><span class="bd">${p.b}</span>${f?['Gaming','Kerja','Kreasi'].map((l,j)=>kc(l,v[j])).join(''):''}</button>`}).join('')}
+function rRig(){$('#bcs').classList.toggle('p',!!B.cs);PC3D.sync(B,cur,M);const n=C.filter(c=>B[c.k]).length;$('#pg').style.width=n/8*100+'%';$('#pgt').textContent=n+' dari 8'}
+function rTabs(){const ch=chk(B);$('#tabs').innerHTML=C.map(c=>{const e=ch.some(x=>x.s=='err'&&x.c.includes(c.k));return`<button class="tb${c.k==cur?' on':''}" data-a="cat" data-v="${c.k}" role="tab"><span class="dt${e?' e':B[c.k]?' f':''}"></span>${c.s}</button>`}).join('');const el=$('.tb.on'),tb=$('#tabs');tb.scrollLeft=el.offsetLeft-(tb.clientWidth-el.offsetWidth)/2}
+function rCat(){const c=M[cur];$('#cat').innerHTML=`<div class="info"><h3>${c.n}</h3><p class="lead">${c.d}</p><div class="tip"><b>Cara memilih</b>${c.t}</div><dl>${c.g.map(([a,d])=>`<div><dt>${a}</dt><dd>${d}</dd></div>`).join('')}</dl></div><div class="og">${c.o.map(o=>{const bad=chk({...B,[c.k]:o}).find(x=>x.s=='err'&&x.c.includes(c.k)),on=B[c.k]&&B[c.k].id==o.id;return`<button class="oc${on?' on':''}${bad?' bad':''}" data-a="opt" data-v="${o.id}" aria-pressed="${!!on}"><span class="tk"></span><strong>${o.n}</strong><small>${o.sp}</small>${kc('Kelas',o.r*10)}<span class="ft"><b>${idr(o.p)}</b>${bad?'<em>Tidak cocok</em>':''}</span>${bad?'<small class="rs">'+bad.t+'</small>':''}</button>`}).join('')}</div><p class="hint">Ketuk kartu yang sudah terpilih untuk membatalkannya.</p>`}
+function rSum(){const b=B,ch=chk(b),er=ch.filter(x=>x.s=='err').length,wn=ch.filter(x=>x.s=='warn').length,miss=C.filter(c=>!b[c.k]&&!(c.k=='gpu'&&b.cpu&&b.cpu.ig)).length,tot=total(b),pf=perf(b),n=need(b),mx=P>=0?PF[P].mx:30000,
+st=er?['Ada masalah','er']:miss?['Belum lengkap','wn']:wn?['Perlu perhatian','wn']:['Siap dirakit','ok'],psu=b.psu;
+$('#sum').innerHTML=`<button class="bar" data-a="tog" aria-label="Buka ringkasan"><div><span>Total perkiraan</span><b>${idr(tot)}</b></div><div><span class="chip ${st[1]}">${st[0]}</span><i class="cv"></i></div></button><div class="bd2"><div class="hd"><h3>Rakitan Anda</h3><span class="chip ${st[1]}">${st[0]}</span></div>
+<ul class="ls">${C.map(c=>`<li><button data-a="jump" data-v="${c.k}"><span class="l">${c.s}</span>${b[c.k]?`<span class="n">${b[c.k].n}</span><span class="p">${idr(b[c.k].p)}</span>`:'<span class="n e">Belum dipilih</span><span></span>'}</button></li>`).join('')}</ul>
+<div class="tot"><span>Total perkiraan</span><b>${idr(tot)}</b></div>${kc('Anggaran',tot/mx*100,tot>mx?'er':'')}<p class="nt">${P>=0&&PF[P].set&&Object.keys(PF[P].set).length?'Anggaran profil '+PF[P].n+': '+PF[P].b:'Pilih profil untuk melihat saran anggaran.'}</p>
+<h4>Estimasi performa</h4>${['Gaming','Produktivitas','Kreator'].map((l,i)=>kc(l,pf[i])).join('')}
+<h4>Kebutuhan daya</h4>${kc('Saran PSU',psu?n/psu.w*100:(n?100:0),psu&&n>psu.w?'er':'')}<p class="nt">${n?'Saran minimal '+n+' W':'Belum ada CPU atau GPU.'}${psu?', PSU terpilih '+psu.w+' W':''}</p>
+<h4>Pengecekan kecocokan</h4><ul class="ck">${ch.map(x=>`<li class="${x.s}"><i></i>${x.t}</li>`).join('')}${miss?`<li class="warn"><i></i>${miss} komponen belum dipilih</li>`:''}${!ch.length&&!miss?'':''}</ul>
+<div class="act"><button class="btn p" data-a="copy">Salin ringkasan</button><button class="btn" data-a="reset">Reset</button></div></div>`}
+function R(){rPf();rRig();rTabs();rCat();rSum()}
+function go(s){document.querySelector(s).scrollIntoView({behavior:'smooth',block:'start'})}
+function toast(m){const e=$('#ts');e.textContent=m;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1800)}
+function copy(){const t='Rakitan PC ('+(P>=0?PF[P].n:'kustom')+')\n'+C.map(c=>c.s+': '+(B[c.k]?B[c.k].n+', '+idr(B[c.k].p):'-')).join('\n')+'\nTotal: '+idr(total(B));
+(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast('Ringkasan disalin'),()=>toast('Salin otomatis tidak tersedia di sini'))}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,v=t.dataset.v;let sc=null;
+if(a=='theme'){const d=document.documentElement,dk=d.dataset.theme?d.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;d.dataset.theme=dk?'light':'dark';return}
+if(a=='ex'){PC3D.explode(t.classList.toggle('p'));return}
+if(a=='rot'){PC3D.reset();return}
+if(a=='prof'){const c=$('#prof');c.hidden=!c.hidden;t.setAttribute('aria-expanded',!c.hidden);return}
+if(a=='go'){go(v);return}
+if(a=='copy'){copy();return}
+if(a=='tog'){$('#sum').classList.toggle('open');return}
+if(a=='pf'){P=+v;B=mk(PF[P].set);sc='#s2'}
+else if(a=='cat')cur=v;
+else if(a=='jump'){cur=v;$('#sum').classList.remove('open');sc='#tabs'}
+else if(a=='opt'){const o=M[cur].o.find(x=>x.id==v);if(B[cur]&&B[cur].id==v)delete B[cur];else B[cur]=o}
+else if(a=='reset'){B={};P=-1}
+R();if(sc)go(sc)});
+const cp=()=>{$('#prof').hidden=true;$('.av').setAttribute('aria-expanded','false')};
+document.addEventListener('click',e=>{if(!e.target.closest('.me'))cp()});
+addEventListener('keydown',e=>{if(e.key=='Escape')cp()});
+PC3D.onPick=k=>{cur=k;$('#sum').classList.remove('open');R();go('#tabs')};
+R();
+</script>
 </body>
 </html>
