@@ -1,71 +1,49 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulasi Rakit PC Interaktif</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Simulasi Rakit PC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="app-header">
-        <h1>Simulasi Rakit PC</h1>
-        <p>Pilih komponen terbaik dan rakit PC impianmu!</p>
-    </header>
-
-    <main class="container">
-        <!-- Bagian Preview Visual -->
-        <section class="preview-section">
-            <div class="image-container">
-                <!-- Foto diubah ke foto.jpeg tanpa elemen span penutup yang menghalangi -->
-                <img src="foto.jpeg" alt="Ilustrasi Rakit PC" id="pc-preview-img">
-            </div>
-            <div id="canvas-container"></div>
-        </section>
-
-        <!-- Bagian Pemilihan Komponen -->
-        <section class="components-section">
-            <h2>Pilih Komponen</h2>
-            
-            <div class="component-group">
-                <label for="processor">Processor (CPU):</label>
-                <select id="processor" class="part-select">
-                    <option value="0">-- Pilih CPU --</option>
-                    <option value="1500000">Intel Core i3 / Ryzen 3</option>
-                    <option value="2800000">Intel Core i5 / Ryzen 5</option>
-                    <option value="4500000">Intel Core i7 / Ryzen 7</option>
-                </select>
-            </div>
-
-            <div class="component-group">
-                <label for="gpu">Kartu Grafis (GPU):</label>
-                <select id="gpu" class="part-select">
-                    <option value="0">-- Pilih GPU --</option>
-                    <option value="2000000">GTX 1650</option>
-                    <option value="4500000">RTX 3060</option>
-                    <option value="8000000">RTX 4070</option>
-                </select>
-            </div>
-
-            <div class="component-group">
-                <label for="ram">RAM:</label>
-                <select id="ram" class="part-select">
-                    <option value="0">-- Pilih RAM --</option>
-                    <option value="600000">8GB DDR4</option>
-                    <option value="1100000">16GB DDR4</option>
-                    <option value="2200000">32GB DDR5</option>
-                </select>
-            </div>
-
-            <div class="summary-box">
-                <h3>Total Estimasi Harga</h3>
-                <p id="total-price">Rp 0</p>
-                <button id="btn-reset" class="btn">Reset Rakitan</button>
-            </div>
-        </section>
-    </main>
-
-    <!-- Skrip Eksternal -->
-    <script src="pc3d.js"></script>
-    <script src="script.js"></script>
+<div class="w">
+<header><div class="logo"><div class="lg"><i></i><i></i><i></i><i></i></div>Rakit PC</div><div class="hr"><button class="btn" data-a="theme"><span class="th"></span>Ganti tema</button>
+<div class="me"><button class="av" data-a="prof" aria-expanded="false" aria-controls="prof" aria-label="Profil pembuat: Ramadhan Syahnendi, XI PPLG"><img src="foto.jpeg" alt="" onerror="this.remove()"></button>
+<div class="mt" role="tooltip">Ramadhan Syahnendi<small>XI PPLG</small></div>
+<div class="mc" id="prof" role="dialog" aria-label="Profil pembuat" hidden>
+<div class="ph"><img src="foto.jpeg" alt="Foto Ramadhan Syahnendi" onerror="this.remove()"></div>
+<div><h3>Ramadhan Syahnendi</h3><p>Siswa XI PPLG</p></div>
+<div class="rw"><span>Jurusan</span><span>Pengembangan Perangkat Lunak dan Gim</span></div>
+<div class="rw"><span>Karya</span><span>Simulasi Rakit PC</span></div>
+</div></div></div></header>
+<section class="hero">
+<div><h1>Rakit PC dulu di layar, baru beli di toko.</h1><p>Pilih jenis PC, susun komponen satu per satu, dan lihat harga, performa, kebutuhan daya, serta kecocokan antar komponen secara langsung. Setiap komponen dilengkapi penjelasan sederhana.</p><button class="btn p" data-a="go" data-v="#s1">Mulai merakit</button></div>
+<div class="rc"><h3>PC 3D interaktif</h3><p class="sub" style="margin:2px 0 10px;font-size:13px">Seret untuk memutar, cubit atau gulir untuk zoom. Bagian yang menyala sudah dipilih, ketuk bagian mana pun untuk membaca penjelasannya.</p>
+<div class="stg" id="stg"></div>
+<div class="tags"><button class="btn" id="bcs" data-a="jump" data-v="cs">Casing</button><button class="btn" data-a="ex">Tampilan terurai</button><button class="btn" data-a="rot">Putar ulang</button></div>
+<div class="kc"><span class="kl"><i id="pg"></i></span><b id="pgt" style="min-width:70px">0 dari 8</b></div></div>
+</section>
+<div class="app">
+<main>
+<div class="sh" id="s1"><b>1</b><h2>Pilih jenis PC</h2></div>
+<p class="sub">Profil akan mengisi komponen yang umum dipakai. Anda tetap bisa mengganti apa saja setelahnya.</p>
+<div class="pf" id="pf"></div>
+<div class="sh" id="s2"><b>2</b><h2>Pelajari dan pilih komponen</h2></div>
+<p class="sub">Pilih kategori, baca fungsinya, lalu tentukan modelnya. Kartu bertanda merah berarti tidak cocok dengan pilihan Anda yang lain.</p>
+<div class="tabs" id="tabs"></div>
+<div id="cat"></div>
+<footer>Harga adalah perkiraan dalam rupiah dan bisa berbeda di setiap toko. Estimasi performa bersifat relatif untuk membandingkan rakitan, bukan hasil uji nyata.</footer>
+</main>
+<aside class="sum" id="sum"></aside>
+</div>
+</div>
+<div class="ts" id="ts"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="pc3d.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
