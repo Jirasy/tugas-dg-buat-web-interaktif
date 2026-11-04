@@ -1,4 +1,4 @@
-/* PC 3D (Three.js r128). Satuan scene = cm. Sisi kaca casing menghadap +z. */
+/* PC 3D (Three.js r128). Satuan scene = cm. Sisi kaca casing menghadap +z.[cite: 3] */
 (function(){
 const el=document.getElementById('stg'),NO={sync(){},explode(){},reset(){},onPick(){}};
 let R;try{R=new THREE.WebGLRenderer({antialias:true,alpha:true})}catch(e){}
